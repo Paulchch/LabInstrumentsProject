@@ -4,17 +4,20 @@
  */
 package Presentation.MainWindow;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author PABLO MORERA
  */
 public class View extends javax.swing.JFrame {
-
+     private Controller controladora;
     /**
      * Creates new form View
      */
     public View() {
         initComponents();
+       
     }
 
     /**
@@ -60,6 +63,12 @@ public class View extends javax.swing.JFrame {
 
         jLabel3.setText("Codigo");
 
+        codigoTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codigoTextFieldActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("Nombre");
 
         jLabel5.setText("Unidad");
@@ -71,10 +80,21 @@ public class View extends javax.swing.JFrame {
         });
 
         guardarButton.setText("Guardar");
+        guardarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarButtonActionPerformed(evt);
+            }
+        });
 
         limpiarButton.setText("Limpiar");
 
         borrarButton.setText("Borrar");
+        borrarButton.setEnabled(false);
+        borrarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                borrarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -187,15 +207,17 @@ public class View extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Codigo", "Nombre", "Unidad"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -320,6 +342,37 @@ public class View extends javax.swing.JFrame {
     private void nombreBusquedaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreBusquedaTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nombreBusquedaTextFieldActionPerformed
+
+    private void codigoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoTextFieldActionPerformed
+       
+    }//GEN-LAST:event_codigoTextFieldActionPerformed
+
+    private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
+       DefaultTableModel tabla = (DefaultTableModel) jTable1.getModel();
+        String codigo = codigoTextField.getText();
+        String unidad = unidadTextField.getText();
+        String nombre = nombreTextField.getText();
+       Object[] fila = {codigo,unidad,nombre};
+       tabla.addRow(fila);
+      codigoTextField.setText("");
+      unidadTextField.setText("");
+      nombreTextField.setText("");
+    }//GEN-LAST:event_guardarButtonActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int filaSeleccionada = jTable1.getSelectedRow();
+        Object codigo = jTable1.getValueAt(filaSeleccionada, 0);
+        Object nombre = jTable1.getValueAt(filaSeleccionada, 1);
+        Object unidad = jTable1.getValueAt(filaSeleccionada, 2);
+        codigoTextField.setText((String) codigo);
+        nombreTextField.setText((String) nombre);
+        unidadTextField.setText((String) unidad);
+        borrarButton.setEnabled(true); 
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void borrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarButtonActionPerformed
+        
+    }//GEN-LAST:event_borrarButtonActionPerformed
 
     /**
      * @param args the command line arguments

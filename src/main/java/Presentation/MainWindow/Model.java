@@ -9,5 +9,8 @@ package Presentation.MainWindow;
  * @author PABLO MORERA
  */
 public class Model {
-    ///prueba
+    int cantDatos;
+    public void guardarDatoTabla(String dato){
+        
+    }
 }

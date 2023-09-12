@@ -9,5 +9,10 @@ package Presentation.MainWindow;
  * @author PABLO MORERA
  */
 public class Controller {
+     private Model modelo;
+     private View vista;
     
+    public void agregarDatoTabla(String dato){
+     
+    }
 }
