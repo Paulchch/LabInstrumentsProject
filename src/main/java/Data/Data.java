@@ -24,6 +24,10 @@ public class Data {
     public List<Instrumento> getInstrumentos() {
         return instrumentos;
     }
+
+    public void setInstrumentos(List<Instrumento> instrumentos) {
+        this.instrumentos = instrumentos;
+    }
     
     
 }
