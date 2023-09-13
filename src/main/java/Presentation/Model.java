@@ -20,7 +20,7 @@ public class Model extends java.util.Observable{
     private Service servicio;
     private TipoInstrumento actual;
     private int changedProps;
-    private XMLIntrumentos TipInst;
+    private XMLIntrumentos XMLInst;
     
 //    public static int NONE=0;
 //    public static int LIST=1;
@@ -32,7 +32,7 @@ public class Model extends java.util.Observable{
     
       public void CreateUserFile()
     {
-        TipInst = new XMLIntrumentos("Instrumentos.xml");
+        XMLInst = new XMLIntrumentos("Instrumentos.xml");
     }
     
     @Override
@@ -78,5 +78,6 @@ public class Model extends java.util.Observable{
  
      public void addInstrumento(TipoInstrumento inst) throws Exception {
        servicio.create(inst);
+       XMLInst.AddInstrumento(inst);
     }
 }

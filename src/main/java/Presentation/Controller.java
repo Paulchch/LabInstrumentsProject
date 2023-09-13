@@ -19,7 +19,6 @@ public class Controller {
     }
     
     public void addInstrumento(String cod,String nom,String uni) throws Exception{
-       TipoInstrumento inst = new TipoInstrumento(cod,nom,uni);
-        mod.addInstrumento(inst);
+        mod.addInstrumento(new TipoInstrumento(cod,nom,uni));
     }
 }

@@ -4,6 +4,7 @@
  */
 package Data;
 
+import Logic.Instrumento;
 import Logic.TipoInstrumento;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,8 @@ public class Data {
 
     public Data() {
         instrumentos = new ArrayList<>();
+        instrumentos.add(new TipoInstrumento("TER","Termómetro","Grados Celcius"));
+        instrumentos.add(new TipoInstrumento("BAR","Barómetro","PSI"));
     }
 
     public List<TipoInstrumento> getInstrumentos() {

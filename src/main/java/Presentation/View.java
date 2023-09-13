@@ -216,7 +216,8 @@ public class View extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {"TER", "Termómetro", "Grados Celcius"},
+                {"BAR", "Barómetro", "PSI"}
             },
             new String [] {
                 "Codigo", "Nombre", "Unidad"
