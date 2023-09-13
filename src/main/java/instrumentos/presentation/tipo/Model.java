@@ -6,6 +6,7 @@ package instrumentos.presentation.tipo;
 
 import Data.Data;
 import Logic.Instrumento;
+import XML_DOM.TiposInstrumentos;
 import java.util.List;
 import java.util.Observer;
 
@@ -17,6 +18,7 @@ public class Model extends java.util.Observable{
     private Data dataInstrumentos;
     private Instrumento actual;
     private int changedProps;
+    private TiposInstrumentos TipInst;
     
 //    public static int NONE=0;
 //    public static int LIST=1;
@@ -26,6 +28,10 @@ public class Model extends java.util.Observable{
         changedProps = 0;
     }
     
+      public void CreateUserFile()
+    {
+        TipInst = new TiposInstrumentos("Instrumentos.xml");
+    }
     
     int cantDatos;
     public void guardarDatoTabla(String dato){

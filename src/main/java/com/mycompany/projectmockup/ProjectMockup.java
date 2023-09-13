@@ -10,6 +10,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfDocument;
 import com.itextpdf.text.pdf.PdfWriter;
+import instrumentos.presentation.tipo.Controller;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.Format;
@@ -40,5 +41,6 @@ public class ProjectMockup {
         document.add(new Paragraph("Fecha: " + f.format(new Date())));
         document.add(new Paragraph(line));
         document.close();
+         Controller mainCtrl = new Controller();
     }
 }

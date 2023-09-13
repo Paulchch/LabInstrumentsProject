@@ -9,10 +9,8 @@ package instrumentos.presentation.tipo;
  * @author PABLO MORERA
  */
 public class Controller {
-     private Model modelo;
-     private View vista;
-    
-    public void agregarDatoTabla(String dato){
-     
+    public Controller(){
+        Model mod = new Model();
+        mod.CreateUserFile();   
     }
 }
