@@ -32,7 +32,6 @@ public class View extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         tiposPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         codigoTextField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -43,13 +42,11 @@ public class View extends javax.swing.JFrame {
         limpiarButton = new javax.swing.JButton();
         borrarButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         nombreBusquedaTextField = new javax.swing.JTextField();
         reporteButton = new javax.swing.JButton();
         buscarButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         instrumentosPanel3 = new javax.swing.JPanel();
@@ -84,7 +81,7 @@ public class View extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setText("Tipo Instrumento");
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo Instrumento"));
 
         jLabel3.setText("Codigo");
 
@@ -126,10 +123,6 @@ public class View extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -150,16 +143,14 @@ public class View extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(limpiarButton))
                     .addComponent(borrarButton))
-                .addGap(0, 229, Short.MAX_VALUE))
+                .addGap(0, 219, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(codigoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,7 +161,7 @@ public class View extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGap(42, 42, 42)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(guardarButton)
                             .addComponent(limpiarButton))
@@ -179,7 +170,7 @@ public class View extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jLabel6.setText("Búsqueda");
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Búsqueda"));
 
         jLabel7.setText("Nombre");
 
@@ -198,25 +189,19 @@ public class View extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel6))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nombreBusquedaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(269, 269, 269)
-                        .addComponent(reporteButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(buscarButton)))
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nombreBusquedaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(269, 269, 269)
+                .addComponent(reporteButton)
+                .addGap(18, 18, 18)
+                .addComponent(buscarButton)
+                .addContainerGap(211, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreBusquedaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
@@ -225,7 +210,7 @@ public class View extends javax.swing.JFrame {
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
-        jLabel8.setText("Listado");
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Listado")));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -248,19 +233,15 @@ public class View extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(477, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout tiposPanelLayout = new javax.swing.GroupLayout(tiposPanel);
@@ -731,8 +712,6 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JPanel calibracionesPanel;
     public javax.swing.JTextField codigoTextField;
     public javax.swing.JButton guardarButton;
-    private javax.swing.JPanel instrumentosPanel1;
-    private javax.swing.JPanel instrumentosPanel2;
     private javax.swing.JPanel instrumentosPanel3;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton6;
@@ -740,20 +719,15 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
@@ -764,25 +738,17 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel jpListado1;
     private javax.swing.JLabel lblDescripcionB1;
-    private javax.swing.JLabel lblMinimo1;
-    private javax.swing.JLabel lblMinimo2;
     private javax.swing.JLabel lblMinimo3;
-    private javax.swing.JLabel lblSerie4;
-    private javax.swing.JLabel lblSerie5;
     private javax.swing.JLabel lblSerie6;
     private javax.swing.JLabel lblSerie7;
     private javax.swing.JLabel lblSerie8;
     private javax.swing.JLabel lblSerie9;
-    private javax.swing.JLabel lblTolerancia1;
-    private javax.swing.JLabel lblTolerancia2;
     private javax.swing.JLabel lblTolerancia3;
     public javax.swing.JButton limpiarButton;
     public javax.swing.JTextField nombreBusquedaTextField;
     public javax.swing.JTextField nombreTextField;
     public javax.swing.JButton reporteButton;
     private javax.swing.JPanel tiposPanel;
-    private javax.swing.JTextField txtDescripcion1;
-    private javax.swing.JTextField txtDescripcion2;
     private javax.swing.JTextField txtDescripcion3;
     private javax.swing.JTextField txtMaximo1;
     private javax.swing.JTextField txtMinimo1;
