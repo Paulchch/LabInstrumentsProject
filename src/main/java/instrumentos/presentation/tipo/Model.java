@@ -6,7 +6,8 @@ package instrumentos.presentation.tipo;
 
 import Data.Data;
 import Logic.Instrumento;
-import XML_DOM.TiposInstrumentos;
+import Logic.Service;
+import XML_DOM.XMLIntrumentos;
 import java.util.List;
 import java.util.Observer;
 
@@ -16,9 +17,10 @@ import java.util.Observer;
  */
 public class Model extends java.util.Observable{
     private Data dataInstrumentos;
+    private Service servicio;
     private Instrumento actual;
     private int changedProps;
-    private TiposInstrumentos TipInst;
+    private XMLIntrumentos TipInst;
     
 //    public static int NONE=0;
 //    public static int LIST=1;
@@ -30,14 +32,9 @@ public class Model extends java.util.Observable{
     
       public void CreateUserFile()
     {
-        TipInst = new TiposInstrumentos("Instrumentos.xml");
+        TipInst = new XMLIntrumentos("Instrumentos.xml");
     }
     
-    int cantDatos;
-    public void guardarDatoTabla(String dato){
-        
-    }
-
     @Override
     public synchronized void addObserver(Observer o) {
         super.addObserver(o); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
@@ -78,16 +75,8 @@ public class Model extends java.util.Observable{
     public void setChangedProps(int changedProps) {
         this.changedProps = changedProps;
     }
-
-    public int getCantDatos() {
-        return cantDatos;
+ 
+     public void addInstrumento(Instrumento inst) throws Exception {
+       servicio.create(inst);
     }
-
-    public void setCantDatos(int cantDatos) {
-        this.cantDatos = cantDatos;
-    }
-    
-    
-    
-    
 }

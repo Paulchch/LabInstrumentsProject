@@ -4,13 +4,22 @@
  */
 package instrumentos.presentation.tipo;
 
+import Logic.Instrumento;
+
 /**
  *
  * @author PABLO MORERA
  */
 public class Controller {
+    private Model mod;
+    
     public Controller(){
-        Model mod = new Model();
+        mod = new Model();
         mod.CreateUserFile();   
+    }
+    
+    public void addInstrumento(String cod,String nom,String uni) throws Exception{
+       Instrumento inst = new Instrumento(cod,nom,uni);
+        mod.addInstrumento(inst);
     }
 }

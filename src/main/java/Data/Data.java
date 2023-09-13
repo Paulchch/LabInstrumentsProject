@@ -13,12 +13,10 @@ import java.util.List;
  * @author PABLO MORERA
  */
 public class Data {
-    private List<Instrumento> instrumentos;
+    private List<Instrumento> instrumentos; 
 
     public Data() {
         instrumentos = new ArrayList<>();
-        instrumentos.add(new Instrumento("TER","Termómetro","Grados Celcius") );
-        instrumentos.add(new Instrumento("BAR","Barómetro","PSI") );
     }
 
     public List<Instrumento> getInstrumentos() {
@@ -27,7 +25,5 @@ public class Data {
 
     public void setInstrumentos(List<Instrumento> instrumentos) {
         this.instrumentos = instrumentos;
-    }
-    
-    
+    }  
 }

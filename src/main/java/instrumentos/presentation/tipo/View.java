@@ -4,6 +4,8 @@
  */
 package instrumentos.presentation.tipo;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,7 +19,7 @@ public class View extends javax.swing.JFrame {
      */
     public View() {
         initComponents();
-       
+        controladora = new Controller();
     }
 
     /**
@@ -602,6 +604,11 @@ public class View extends javax.swing.JFrame {
         String nombre = nombreTextField.getText();
        Object[] fila = {codigo,unidad,nombre};
        tabla.addRow(fila);
+         try {
+             controladora.addInstrumento(codigo,nombre,unidad);
+         } catch (Exception ex) {
+             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+         }
       codigoTextField.setText("");
       unidadTextField.setText("");
       nombreTextField.setText("");
