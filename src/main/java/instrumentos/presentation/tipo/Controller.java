@@ -4,7 +4,7 @@
  */
 package instrumentos.presentation.tipo;
 
-import Logic.Instrumento;
+import Logic.TipoInstrumento;
 
 /**
  *
@@ -19,7 +19,7 @@ public class Controller {
     }
     
     public void addInstrumento(String cod,String nom,String uni) throws Exception{
-       Instrumento inst = new Instrumento(cod,nom,uni);
+       TipoInstrumento inst = new TipoInstrumento(cod,nom,uni);
         mod.addInstrumento(inst);
     }
 }

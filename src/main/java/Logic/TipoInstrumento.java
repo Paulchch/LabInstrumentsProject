@@ -10,17 +10,17 @@ import java.util.Objects;
  *
  * @author PABLO MORERA
  */
-public class Instrumento {
+public class TipoInstrumento {
     
     private String codigo;
     private String nombre;
     private String unidad;
 
-    public Instrumento() {
+    public TipoInstrumento() {
         this("","","");
     }  
     
-    public Instrumento(String codigo, String nombre, String unidad) {
+    public TipoInstrumento(String codigo, String nombre, String unidad) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.unidad = unidad;
@@ -72,7 +72,7 @@ public class Instrumento {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Instrumento other = (Instrumento) obj;
+        final TipoInstrumento other = (TipoInstrumento) obj;
         if (!Objects.equals(this.codigo, other.codigo)) {
             return false;
         }

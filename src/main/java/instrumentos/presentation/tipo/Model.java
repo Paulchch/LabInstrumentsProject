@@ -5,7 +5,7 @@
 package instrumentos.presentation.tipo;
 
 import Data.Data;
-import Logic.Instrumento;
+import Logic.TipoInstrumento;
 import Logic.Service;
 import XML_DOM.XMLIntrumentos;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.Observer;
 public class Model extends java.util.Observable{
     private Data dataInstrumentos;
     private Service servicio;
-    private Instrumento actual;
+    private TipoInstrumento actual;
     private int changedProps;
     private XMLIntrumentos TipInst;
     
@@ -44,9 +44,9 @@ public class Model extends java.util.Observable{
         notifyObservers(changedProps);
         changedProps = 0;    
     }
-    public void init(List<Instrumento> list){
+    public void init(List<TipoInstrumento> list){
         dataInstrumentos.setInstrumentos(list);
-        setActual(new Instrumento());
+        setActual(new TipoInstrumento());
         
     }
 
@@ -59,11 +59,11 @@ public class Model extends java.util.Observable{
         changedProps += 1;
     }
 
-    public Instrumento getActual() {
+    public TipoInstrumento getActual() {
         return actual;
     }
 
-    public void setActual(Instrumento actual) {
+    public void setActual(TipoInstrumento actual) {
         changedProps += 2;
         this.actual = actual;
     }
@@ -76,7 +76,7 @@ public class Model extends java.util.Observable{
         this.changedProps = changedProps;
     }
  
-     public void addInstrumento(Instrumento inst) throws Exception {
+     public void addInstrumento(TipoInstrumento inst) throws Exception {
        servicio.create(inst);
     }
 }

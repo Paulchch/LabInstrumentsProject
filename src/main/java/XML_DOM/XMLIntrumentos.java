@@ -4,7 +4,7 @@
  */
 package XML_DOM;
 import Data.Data;
-import Logic.Instrumento;
+import Logic.TipoInstrumento;
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import java.io.*;
@@ -22,13 +22,13 @@ import org.xml.sax.SAXException;
 public class XMLIntrumentos {
     private static String xmlFilePath = "";
     private Data datos;
-    private Instrumento inst;
+    private TipoInstrumento inst;
 
     public XMLIntrumentos(String filepath){
         xmlFilePath = filepath;
         CreateFile();
         datos = new Data();
-        inst = new Instrumento();
+        inst = new TipoInstrumento();
     }
     private void CreateFile()
     {
@@ -120,7 +120,7 @@ public class XMLIntrumentos {
         }
     }
     
-     public boolean AddInstrumento(Instrumento ints) throws TransformerConfigurationException, TransformerException
+     public boolean AddInstrumento(TipoInstrumento ints) throws TransformerConfigurationException, TransformerException
     {
         boolean result = false;
        
