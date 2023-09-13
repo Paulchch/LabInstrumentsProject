@@ -10,7 +10,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfDocument;
 import com.itextpdf.text.pdf.PdfWriter;
-import instrumentos.presentation.tipo.Controller;
+import Presentation.Controller;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.Format;
