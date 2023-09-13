@@ -4,6 +4,7 @@
  */
 package XML_DOM;
 import Data.Data;
+import Logic.Instrumento;
 import Logic.TipoInstrumento;
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
@@ -75,28 +76,6 @@ public class XMLIntrumentos {
                 Element uni2 = document.createElement("Unidad");
                 uni2.appendChild(document.createTextNode("PSI"));
                 inst2.appendChild(uni2);
-                 
-                 
-//                
-//                for(int i = 1; i <= datos.getInstrumentos().size();i++){
-//                Element instrumento = document.createElement("Instrumento"+i);
-//                instrumentos.appendChild(instrumento);
-//               
-//                inst = datos.getInstrumentos().get(i);
-//                
-//                 Element codigo = document.createElement("Codigo");
-//                codigo.appendChild(document.createTextNode(inst.getCodigo()));
-//                 instrumento.appendChild(codigo);
-//                 
-//                 Element nombre = document.createElement("Nombre");
-//                nombre.appendChild(document.createTextNode(inst.getNombre()));
-//                instrumento.appendChild(nombre);
-//                
-//                   
-//                Element unidad = document.createElement("Unidad");
-//                unidad.appendChild(document.createTextNode(inst.getUnidad()));
-//                 instrumento.appendChild(unidad);
-//                }
 
                 // create the xml file
                 //transform the DOM Object to an XML File
@@ -164,4 +143,49 @@ public class XMLIntrumentos {
         }    
          return result; 
     } 
+    
+    public boolean UpdateInstrumento(Instrumento instrumento) throws TransformerConfigurationException, TransformerException
+    {
+        boolean result = false;
+        
+        try {
+            File xmlFile = new File(xmlFilePath);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            if(!xmlFile.exists())
+                return result;
+            Document doc = builder.parse(xmlFile);
+            NodeList instNodes = doc.getElementsByTagName("Instrumento1");
+            for(int i = 0; i < instNodes.getLength(); i++) {            
+                Node instNode = instNodes.item(i);
+                if(instNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element instElement = (Element) instNode;
+                    //int id = Integer.parseInt(userElement.getAttribute("id"));
+                     
+                    if(instrumento.getCodigo().equals(instElement.getAttribute("Codigo")))
+                    {
+                        instElement.getElementsByTagName("Nombre").item(0).setTextContent(instrumento.getNombre());
+                        instElement.getElementsByTagName("Unidad").item(0).setTextContent(instrumento.getUnidad()); 
+                     
+                        
+                        // write the DOM object to the file
+                        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+
+                        Transformer transformer = transformerFactory.newTransformer();
+                        DOMSource domSource = new DOMSource(doc);
+
+                        StreamResult streamResult = new StreamResult(new File(xmlFilePath));
+                        transformer.transform(domSource, streamResult);
+                        
+                        System.out.println("Done updating the user to XML File");
+                        
+                        break;
+                    }
+                }
+            }
+        } catch (ParserConfigurationException | IOException | SAXException pce) {
+        }
+        
+        return result;
+    }
 }
