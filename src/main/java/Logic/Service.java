@@ -25,7 +25,10 @@ public class Service {
     private Data data;
 
     private Service(){
-        data = new Data();
+    }
+    
+    public void uptadeData(Data dat){
+        data = dat;
     }
 
     //================= TIPOS DE INSTRUMENTO ============
@@ -63,6 +66,14 @@ public class Service {
                 .filter(i->i.getNombre().contains(e.getNombre()))
                 .sorted(Comparator.comparing(TipoInstrumento::getNombre))
                 .collect(Collectors.toList());
+    }
+    public boolean ExistInstrumento(TipoInstrumento e){
+        TipoInstrumento result = data.getInstrumentos().stream()
+                .filter(i->i.getCodigo().equals(e.getCodigo())).findFirst().orElse(null);
+        if (result!=null) 
+                return true;
+        else
+            return false;
     }
 
  }

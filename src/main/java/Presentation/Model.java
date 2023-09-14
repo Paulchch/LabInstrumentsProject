@@ -17,7 +17,6 @@ import java.util.Observer;
  */
 public class Model extends java.util.Observable{
     private Data dataInstrumentos;
-    private Service servicio;
     private TipoInstrumento actual;
     private int changedProps;
     private XMLIntrumentos XMLInst;
@@ -28,6 +27,8 @@ public class Model extends java.util.Observable{
 
     public Model() {
         changedProps = 0;
+        dataInstrumentos = new Data();
+        Service.instance().uptadeData(dataInstrumentos);
     }
     
       public void CreateUserFile()
@@ -78,5 +79,15 @@ public class Model extends java.util.Observable{
  
      public void addInstrumento(TipoInstrumento inst) throws Exception {
        XMLInst.AddInstrumento(inst);
+       if(Service.instance().ExistInstrumento(inst)){
+          Service.instance().update(inst);
+       }
+       else{
+            Service.instance().create(inst);
+       }
+    }
+     
+    public List<TipoInstrumento> uptadeTable(){
+        return dataInstrumentos.getInstrumentos();
     }
 }

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package XML_DOM;
+
 import Logic.Instrumento;
 import Logic.TipoInstrumento;
 import org.w3c.dom.*;
@@ -84,7 +85,7 @@ public class XMLIntrumentos {
 
                 transformer.transform(domSource, streamResult);
 
-                System.out.println("TIPOS DE INSTRUMENTO");
+                System.out.println("Done add the instrument to XML File");
             }
         } catch (ParserConfigurationException | TransformerException pce) {
             System.out.println(pce.getMessage());
@@ -163,8 +164,8 @@ public class XMLIntrumentos {
                 result = true;
             }
 
-        } catch (ParserConfigurationException | IOException | SAXException | TransformerException e) {
-            e.printStackTrace();
+        } catch (ParserConfigurationException | IOException | SAXException | TransformerException pce) {
+            pce.printStackTrace();
         }
         
         return result;
@@ -181,35 +182,34 @@ public class XMLIntrumentos {
             if(!xmlFile.exists())
                 return result;
             Document doc = builder.parse(xmlFile);
-            NodeList instNodes = doc.getElementsByTagName("Instrumento1");
-            for(int i = 0; i < instNodes.getLength(); i++) {            
-                Node instNode = instNodes.item(i);
-                if(instNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element instElement = (Element) instNode;
+            NodeList instrumentosNodes = doc.getElementsByTagName("Instrumento");
+            for(int i = 0; i < instrumentosNodes.getLength(); i++) {            
+                Node instrumentoNode = instrumentosNodes.item(i);
+                if(instrumentoNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element instrumentoElement = (Element) instrumentoNode;
                     //int id = Integer.parseInt(userElement.getAttribute("id"));
                      
-                    if(instrumento.getCodigo().equals(instElement.getAttribute("Codigo")))
+                    if(instrumento.getCodigo().equals(instrumentoElement.getAttribute("Codigo")))
                     {
-                        instElement.getElementsByTagName("Nombre").item(0).setTextContent(instrumento.getNombre());
-                        instElement.getElementsByTagName("Unidad").item(0).setTextContent(instrumento.getUnidad()); 
+                        instrumentoElement.getElementsByTagName("Nombre").item(0).setTextContent(instrumento.getNombre());
+                        instrumentoElement.getElementsByTagName("Unidad").item(0).setTextContent(instrumento.getUnidad()); 
                      
                         
-                        // write the DOM object to the file
+               
                         TransformerFactory transformerFactory = TransformerFactory.newInstance();
-
                         Transformer transformer = transformerFactory.newTransformer();
                         DOMSource domSource = new DOMSource(doc);
-
                         StreamResult streamResult = new StreamResult(new File(xmlFilePath));
                         transformer.transform(domSource, streamResult);
                         
-                        System.out.println("Done updating the user to XML File");
+                        System.out.println("Done updating the instrument to XML File");
                         
                         break;
                     }
                 }
             }
         } catch (ParserConfigurationException | IOException | SAXException pce) {
+               pce.printStackTrace();
         }
         
         return result;

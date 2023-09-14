@@ -41,6 +41,5 @@ public class ProjectMockup {
         document.add(new Paragraph("Fecha: " + f.format(new Date())));
         document.add(new Paragraph(line));
         document.close();
-         Controller mainCtrl = new Controller();
     }
 }

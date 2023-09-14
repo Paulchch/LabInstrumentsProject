@@ -5,6 +5,7 @@
 package Presentation;
 
 import Logic.TipoInstrumento;
+import java.util.List;
 
 /**
  *
@@ -12,13 +13,20 @@ import Logic.TipoInstrumento;
  */
 public class Controller {
     private Model mod;
+     private View vista; 
     
-    public Controller(){
+    public Controller(View view){
+        vista = view;
         mod = new Model();
         mod.CreateUserFile();   
     }
     
     public void addInstrumento(String cod,String nom,String uni) throws Exception{
         mod.addInstrumento(new TipoInstrumento(cod,nom,uni));
+        uptadeTable();
+    }
+    
+    public void uptadeTable(){
+        vista.UptadeTable(mod.uptadeTable());
     }
 }

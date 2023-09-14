@@ -4,6 +4,8 @@
  */
 package Presentation;
 
+import Logic.TipoInstrumento;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +21,19 @@ public class View extends javax.swing.JFrame {
      */
     public View() {
         initComponents();
-        controladora = new Controller();
+        controladora = new Controller(this);
+    }
+    
+
+    public void UptadeTable(List<TipoInstrumento> instrumentos){
+        
+        DefaultTableModel tabla = (DefaultTableModel) jTable1.getModel();
+        tabla.setRowCount(0);
+        for(int i = 0; i < instrumentos.size(); i++){
+        Object[] fila = {instrumentos.get(i).getCodigo(), instrumentos.get(i).getNombre(), instrumentos.
+                get(i).getUnidad()};
+        tabla.addRow(fila);
+        }
     }
 
     /**
@@ -216,8 +230,7 @@ public class View extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"TER", "Termómetro", "Grados Celcius"},
-                {"BAR", "Barómetro", "PSI"}
+
             },
             new String [] {
                 "Codigo", "Nombre", "Unidad"
@@ -599,14 +612,12 @@ public class View extends javax.swing.JFrame {
     }//GEN-LAST:event_codigoTextFieldActionPerformed
 
     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
-       DefaultTableModel tabla = (DefaultTableModel) jTable1.getModel();
-        String codigo = codigoTextField.getText();
-        String unidad = unidadTextField.getText();
-        String nombre = nombreTextField.getText();
-       Object[] fila = {codigo,unidad,nombre};
-       tabla.addRow(fila);
+
+        String cod = codigoTextField.getText();
+        String uni = unidadTextField.getText();
+        String nom = nombreTextField.getText();
          try {
-             controladora.addInstrumento(codigo,nombre,unidad);
+           controladora.addInstrumento(cod ,nom ,uni);
          } catch (Exception ex) {
              Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
          }
