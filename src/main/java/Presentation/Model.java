@@ -77,7 +77,6 @@ public class Model extends java.util.Observable{
     }
  
      public void addInstrumento(TipoInstrumento inst) throws Exception {
-       servicio.create(inst);
        XMLInst.AddInstrumento(inst);
     }
 }

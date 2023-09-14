@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package XML_DOM;
-import Data.Data;
 import Logic.Instrumento;
 import Logic.TipoInstrumento;
 import org.w3c.dom.*;
@@ -22,14 +21,10 @@ import org.xml.sax.SAXException;
  */
 public class XMLIntrumentos {
     private static String xmlFilePath = "";
-    private Data datos;
-    private TipoInstrumento inst;
 
     public XMLIntrumentos(String filepath){
         xmlFilePath = filepath;
         CreateFile();
-        datos = new Data();
-        inst = new TipoInstrumento();
     }
     private void CreateFile()
     {
@@ -46,12 +41,11 @@ public class XMLIntrumentos {
                 Element instrumentos = document.createElement("Instrumentos");
                 document.appendChild(instrumentos);
                 
-                Element inst1 = document.createElement("Instrumento1");
+                Element inst1 = document.createElement("Instrumento");
                 instrumentos.appendChild(inst1);
-                
-                Element cod1 = document.createElement("Codigo");
-                cod1.appendChild(document.createTextNode("TER"));
-                inst1.appendChild(cod1);
+                Attr attr1 = document.createAttribute("Codigo");
+                attr1.setValue("TER");
+                inst1.setAttributeNode(attr1);
                  
                 Element nom1 = document.createElement("Nombre");
                 nom1.appendChild(document.createTextNode("Termómetro"));
@@ -61,12 +55,11 @@ public class XMLIntrumentos {
                 uni1.appendChild(document.createTextNode("Grados Celsius"));
                 inst1.appendChild(uni1);
 
-                Element inst2 = document.createElement("Instrumento2");
+                Element inst2 = document.createElement("Instrumento");
                 instrumentos.appendChild(inst2);
-                
-                Element cod2 = document.createElement("Codigo");
-                cod2.appendChild(document.createTextNode("BAR"));
-                inst2.appendChild(cod2);
+                 Attr attr2 = document.createAttribute("Codigo");
+                attr2.setValue("BAR");
+                inst2.setAttributeNode(attr2);
                  
                 Element nom2 = document.createElement("Nombre");
                 nom2.appendChild(document.createTextNode("Barómetro"));
@@ -99,49 +92,82 @@ public class XMLIntrumentos {
         }
     }
     
-     public boolean AddInstrumento(TipoInstrumento ints) throws TransformerConfigurationException, TransformerException
+     public boolean AddInstrumento(TipoInstrumento instrumento) throws TransformerConfigurationException, TransformerException
     {
-        boolean result = false;
-       
+       boolean result = false;
+        boolean idexist = false;
+      
+        //----------------Check if user id already exists--------------
+        
         try {
             File xmlFile = new File(xmlFilePath);
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(xmlFile);
             if(!xmlFile.exists())
                 return result;
-            Document document = builder.parse(xmlFile);
-     
-            Node root = document.getElementsByTagName("Instrumentos").item(0);
+            NodeList instrumentoNodes = doc.getElementsByTagName("Instrumento");
+            for(int i = 0; i < instrumentoNodes.getLength(); i++) {            
+                Node instrumentoNode = instrumentoNodes.item(i);
+                if(instrumentoNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element instrumentoElement = (Element) instrumentoNode;
+                    String codigo = instrumentoElement.getAttribute("Codigo");
 
-            Element newInst = document.createElement("Intrumento"+datos.getInstrumentos().size());
-    
-            root.appendChild(newInst);
-                
-            inst = datos.getInstrumentos().get(datos.getInstrumentos().size()-1);
-                   
-            Element cod = document.createElement("Codigo");
-            cod.appendChild(document.createTextNode(inst.getCodigo()));
-            newInst.appendChild(cod);
-                 
-            Element nom = document.createElement("Nombre");
-            nom.appendChild(document.createTextNode(inst.getNombre()));
-            newInst.appendChild(nom);
-                     
-            Element uni = document.createElement("Unidad");
-            uni.appendChild(document.createTextNode(inst.getUnidad()));
-            newInst.appendChild(uni);
-    
-                 
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource domSource = new DOMSource(document);
-            StreamResult streamResult = new StreamResult(new File(xmlFilePath));
-
-            transformer.transform(domSource, streamResult);
-            
+                    if(instrumento.getCodigo().equals(codigo))
+                    {
+                        idexist = true;
+                        break;
+                    }
+                }
+            }
         } catch (ParserConfigurationException | IOException | SAXException pce) {
-        }    
-         return result; 
+         pce.printStackTrace();
+        }
+        
+        
+        
+        //---------------If user id does not exits---------------------
+        try {
+            if(!idexist)
+            {
+                File xmlFile = new File(xmlFilePath);
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder builder = factory.newDocumentBuilder();
+                Document doc = builder.parse(xmlFile);
+                
+                Node root = doc.getElementsByTagName("Instrumentos").item(0);
+
+                Element newInstrumento = doc.createElement("Instrumento");
+                
+                Attr attrCodigo = doc.createAttribute("Codigo");
+                attrCodigo.setValue(instrumento.getCodigo());
+                newInstrumento.setAttributeNode(attrCodigo);
+
+                Element nombreElement = doc.createElement("Nombre");
+                nombreElement.appendChild(doc.createTextNode(instrumento.getNombre()));
+                newInstrumento.appendChild(nombreElement);
+
+                Element unidadElement = doc.createElement("Unidad");
+                unidadElement.appendChild(doc.createTextNode(instrumento.getUnidad()));
+                newInstrumento.appendChild(unidadElement);
+
+                root.appendChild(newInstrumento);
+                 
+                TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                Transformer transformer = transformerFactory.newTransformer();
+                DOMSource domSource = new DOMSource(doc);
+                StreamResult streamResult = new StreamResult(new File(xmlFilePath));
+
+                transformer.transform(domSource, streamResult);
+
+                result = true;
+            }
+
+        } catch (ParserConfigurationException | IOException | SAXException | TransformerException e) {
+            e.printStackTrace();
+        }
+        
+        return result;
     } 
     
     public boolean UpdateInstrumento(Instrumento instrumento) throws TransformerConfigurationException, TransformerException
