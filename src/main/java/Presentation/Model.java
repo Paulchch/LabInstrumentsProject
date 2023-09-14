@@ -2,10 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package instrumentos.presentation.tipo;
+package Presentation;
 
 import Data.Data;
-import Logic.Instrumento;
+import Logic.TipoInstrumento;
+import Logic.Service;
+import XML_DOM.XMLIntrumentos;
 import java.util.List;
 import java.util.Observer;
 
@@ -15,8 +17,9 @@ import java.util.Observer;
  */
 public class Model extends java.util.Observable{
     private Data dataInstrumentos;
-    private Instrumento actual;
+    private TipoInstrumento actual;
     private int changedProps;
+    private XMLIntrumentos XMLInst;
     
 //    public static int NONE=0;
 //    public static int LIST=1;
@@ -24,14 +27,15 @@ public class Model extends java.util.Observable{
 
     public Model() {
         changedProps = 0;
+        dataInstrumentos = new Data();
+        Service.instance().uptadeData(dataInstrumentos);
     }
     
-    
-    int cantDatos;
-    public void guardarDatoTabla(String dato){
-        
+      public void CreateUserFile()
+    {
+        XMLInst = new XMLIntrumentos("Instrumentos.xml");
     }
-
+    
     @Override
     public synchronized void addObserver(Observer o) {
         super.addObserver(o); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
@@ -41,9 +45,9 @@ public class Model extends java.util.Observable{
         notifyObservers(changedProps);
         changedProps = 0;    
     }
-    public void init(List<Instrumento> list){
+    public void init(List<TipoInstrumento> list){
         dataInstrumentos.setInstrumentos(list);
-        setActual(new Instrumento());
+        setActual(new TipoInstrumento());
         
     }
 
@@ -56,11 +60,11 @@ public class Model extends java.util.Observable{
         changedProps += 1;
     }
 
-    public Instrumento getActual() {
+    public TipoInstrumento getActual() {
         return actual;
     }
 
-    public void setActual(Instrumento actual) {
+    public void setActual(TipoInstrumento actual) {
         changedProps += 2;
         this.actual = actual;
     }
@@ -72,16 +76,18 @@ public class Model extends java.util.Observable{
     public void setChangedProps(int changedProps) {
         this.changedProps = changedProps;
     }
-
-    public int getCantDatos() {
-        return cantDatos;
+ 
+     public void addInstrumento(TipoInstrumento inst) throws Exception {
+       XMLInst.AddInstrumento(inst);
+       if(Service.instance().ExistInstrumento(inst)){
+          Service.instance().update(inst);
+       }
+       else{
+            Service.instance().create(inst);
+       }
     }
-
-    public void setCantDatos(int cantDatos) {
-        this.cantDatos = cantDatos;
+     
+    public List<TipoInstrumento> uptadeTable(){
+        return dataInstrumentos.getInstrumentos();
     }
-    
-    
-    
-    
 }

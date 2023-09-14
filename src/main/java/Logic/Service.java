@@ -25,26 +25,29 @@ public class Service {
     private Data data;
 
     private Service(){
-        data = new Data();
+    }
+    
+    public void uptadeData(Data dat){
+        data = dat;
     }
 
     //================= TIPOS DE INSTRUMENTO ============
-    public void create(Instrumento e) throws Exception{
-        Instrumento result = data.getInstrumentos().stream()
+    public void create(TipoInstrumento e) throws Exception{
+        TipoInstrumento result = data.getInstrumentos().stream()
                 .filter(i->i.getCodigo().equals(e.getCodigo())).findFirst().orElse(null);
         if (result==null) data.getInstrumentos().add(e);
         else throw new Exception("Tipo ya existe");
     }
 
-    public Instrumento read(Instrumento e) throws Exception{
-        Instrumento result = data.getInstrumentos().stream()
+    public TipoInstrumento read(TipoInstrumento e) throws Exception{
+        TipoInstrumento result = data.getInstrumentos().stream()
                 .filter(i->i.getCodigo().equals(e.getCodigo())).findFirst().orElse(null);
         if (result!=null) return result;
         else throw new Exception("Tipo no existe");
     }
 
-    public void update(Instrumento e) throws Exception{
-        Instrumento result;
+    public void update(TipoInstrumento e) throws Exception{
+        TipoInstrumento result;
         try{
             result = this.read(e);
             data.getInstrumentos().remove(result);
@@ -54,15 +57,23 @@ public class Service {
         }
     }
 
-    public void delete(Instrumento e) throws Exception{
+    public void delete(TipoInstrumento e) throws Exception{
         data.getInstrumentos().remove(e);
      }
 
-    public List<Instrumento> search(Instrumento e){
+    public List<TipoInstrumento> search(TipoInstrumento e){
         return data.getInstrumentos().stream()
                 .filter(i->i.getNombre().contains(e.getNombre()))
-                .sorted(Comparator.comparing(Instrumento::getNombre))
+                .sorted(Comparator.comparing(TipoInstrumento::getNombre))
                 .collect(Collectors.toList());
+    }
+    public boolean ExistInstrumento(TipoInstrumento e){
+        TipoInstrumento result = data.getInstrumentos().stream()
+                .filter(i->i.getCodigo().equals(e.getCodigo())).findFirst().orElse(null);
+        if (result!=null) 
+                return true;
+        else
+            return false;
     }
 
  }
